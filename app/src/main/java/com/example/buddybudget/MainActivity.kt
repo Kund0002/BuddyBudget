@@ -12,6 +12,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.buddybudget.ui.theme.BuddyBudgetTheme
 
+data class User(val name: String)
+data class Debt(val debtor: User, val creditor: User, val amount: Double)
+
+val currentUser = User("Alice")
+val debts = listOf(
+    Debt(User("Alice"), User("Bob"), 50.0),
+    Debt(User("Charlie"), User("Alice"), 30.0),
+    Debt(User("Alice"), User("Dave"), 20.0)
+)
+
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +33,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("User")
+                    GreetingScreen(currentUser, debts)
                 }
             }
         }
@@ -30,11 +41,37 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun GreetingScreen(currentUser: User, debts: List<Debt>) {
+    var owed = calculateAmountOwedToOthers(currentUser, debts)
     Text(
-        text = "Hello $name!",
+        text = "Hello ${currentUser.name} ! You owe $owed kroner in total"
+    )
+
+
+}
+
+
+
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+
+    var owed = calculateAmountOwedToOthers(currentUser, debts)
+    Text(
+        text = "Hello $name! You owe $owed in total",
         modifier = modifier
     )
+}
+
+fun calculateAmountOwedToOthers(currentUser: User, debts: List<Debt>): Double {
+    var totalAmount = 0.0
+
+    debts.forEach { debt ->
+        if (debt.debtor == currentUser) {
+            totalAmount += debt.amount
+        }
+    }
+
+    return totalAmount
 }
 
 @Preview(showBackground = true)

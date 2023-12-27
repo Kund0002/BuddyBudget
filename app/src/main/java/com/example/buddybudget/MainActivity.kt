@@ -38,14 +38,17 @@ val debts = listOf(
 )
 
 
+
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-user-registration
+            //user-registration
             //AppContent()
             Navigation()
             }
+        //val dbHelper = DatabaseHelper(this)
         }
     }
 

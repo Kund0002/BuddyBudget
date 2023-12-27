@@ -48,7 +48,8 @@ class MainActivity : ComponentActivity() {
             //AppContent()
             Navigation()
             }
-        //val dbHelper = DatabaseHelper(this)
+        val dbHelper = DatabaseHelper(this)
+        val expenseManager = ExpenseManager(dbHelper)
         }
     }
 

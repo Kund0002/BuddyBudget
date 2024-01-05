@@ -33,13 +33,13 @@ fun SplashScreen (navController: NavController) {
                 }
             )
         )
+        //delay until navigating to different screen, lower this value while debugging for faster load
         delay(2000L)
-        navController.navigate(Screen.MainScreen.route)
+        navController.navigate(Screen.PreLoginScreen.route)
     }
     Box(
         contentAlignment = androidx.compose.ui.Alignment.Center,
         modifier = Modifier.fillMaxSize()){
         Image(painter = painterResource(id =R.drawable.buddybudget_logo), contentDescription = "Logo" )
-
     }
 }

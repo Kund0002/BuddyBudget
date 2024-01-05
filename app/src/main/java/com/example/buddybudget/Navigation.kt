@@ -52,6 +52,9 @@ fun Navigation() {
         ) { entry ->
             LoginScreen(name = entry.arguments?.getString("name"))
         }
+        composable(route = Screen.MainScreen.route){
+            NewGroupScreen(navController = navController)
+        }
     }
 }
 

@@ -66,8 +66,6 @@ fun PreLoginScreen(navController: NavController) {
             padding(5.dp).
             padding(horizontal = 50.dp)
 
-
-
         ) {
             Text(text = "Create account", fontSize = 25.sp,)
 

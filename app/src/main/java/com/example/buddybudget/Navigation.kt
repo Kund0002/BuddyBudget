@@ -33,8 +33,11 @@ import androidx.navigation.compose.rememberNavController
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.MainScreen.route) {
-        composable(route = Screen.MainScreen.route) {
+    NavHost(navController = navController, startDestination = Screen.SplashScreen.route) {
+        composable(route = Screen.SplashScreen.route) {
+            SplashScreen(navController = navController)
+        }
+        composable(route = Screen.MainScreen.route){
             MainScreen(navController = navController)
         }
         composable(
@@ -52,43 +55,3 @@ fun Navigation() {
     }
 }
 
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MainScreen(navController: NavController) {
-    var text by remember {
-        mutableStateOf("")
-    }
-    Column(
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 50.dp)
-    ) {
-        TextField(
-            value = text,
-            onValueChange = {
-                text = it
-            },
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(onClick = {
-            navController.navigate(Screen.LoginScreen.withArgs(text))
-        },
-            modifier = Modifier.align(Alignment.End))
-
-        {
-            Text(text = "To Login Screen")
-        }
-    }
-
-}
-
-
-@Composable
-fun LoginScreen(name: String?) {
-    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()){
-        Text(text = "Hello, $name")
-    }
-}

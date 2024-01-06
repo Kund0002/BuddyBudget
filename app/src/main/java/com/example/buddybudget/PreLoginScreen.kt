@@ -57,7 +57,9 @@ fun PreLoginScreen(navController: NavController) {
         Button(
             //change Screen.MainScreen.route to the create account screen when implemented
             onClick = {
+
                 navController.navigate(Screen.SignUpScreen.route)
+
             },
             colors = ButtonDefaults.buttonColors(Color.Cyan),
             modifier = Modifier.align(Alignment.CenterHorizontally).
@@ -65,8 +67,6 @@ fun PreLoginScreen(navController: NavController) {
             weight(1f, fill = false).
             padding(5.dp).
             padding(horizontal = 50.dp)
-
-
 
         ) {
             Text(text = "Create account", fontSize = 25.sp,)

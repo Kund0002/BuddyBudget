@@ -75,8 +75,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             put("name", dummyUserName)
             put("email", dummyUserEmail)
         }
-
-
         // Insert the dummy user into the 'users' table
         db.insert("users", null, values)
     }

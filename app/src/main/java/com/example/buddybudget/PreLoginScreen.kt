@@ -39,7 +39,7 @@ fun PreLoginScreen(navController: NavController) {
 
         Button(
             onClick = {
-                navController.navigate(Screen.MainScreen.route)
+                navController.navigate(Screen.LoginScreen.route)
             },
             colors = ButtonDefaults.buttonColors(Color.Cyan),
             modifier = Modifier
@@ -57,7 +57,7 @@ fun PreLoginScreen(navController: NavController) {
         Button(
             //change Screen.MainScreen.route to the create account screen when implemented
             onClick = {
-                navController.navigate(Screen.MainScreen.route)
+                navController.navigate(Screen.SignUpScreen.route)
             },
             colors = ButtonDefaults.buttonColors(Color.Cyan),
             modifier = Modifier.align(Alignment.CenterHorizontally).

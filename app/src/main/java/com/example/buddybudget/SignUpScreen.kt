@@ -62,7 +62,6 @@ fun SignUpScreen(navController: NavController) {
         )
 
         Button(
-            //change Screen.MainScreen.route to the create account screen when implemented
             onClick = {
                 navController.navigate(Screen.SignUpScreen.route)
             },

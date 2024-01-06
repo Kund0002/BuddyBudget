@@ -46,6 +46,15 @@ fun Navigation() {
         composable(route = Screen.PreLoginScreen.route) {
             PreLoginScreen(navController = navController)
         }
+        composable(route = Screen.UserEditScreen.route) {
+            UserEditScreen(navController = navController)
+        }
+        composable(route = Screen.UserInformationScreen.route) {
+            UserInformationScreen(navController = navController)
+        }
+        composable(route = Screen.NewGroupScreen.route) {
+            NewGroupScreen(navController = navController)
+        }
         composable(
             route = Screen.HomeScreen.route + "/{name}",
             arguments = listOf(

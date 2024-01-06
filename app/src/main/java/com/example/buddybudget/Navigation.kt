@@ -37,14 +37,17 @@ fun Navigation() {
         composable(route = Screen.SplashScreen.route) {
             SplashScreen(navController = navController)
         }
-        composable(route = Screen.MainScreen.route){
-            MainScreen(navController = navController)
+        composable(route = Screen.LoginScreen.route) {
+            LoginScreen(navController = navController)
         }
-        composable(route = Screen.PreLoginScreen.route){
+        composable(route = Screen.SignUpScreen.route) {
+            SignUpScreen(navController = navController)
+        }
+        composable(route = Screen.PreLoginScreen.route) {
             PreLoginScreen(navController = navController)
         }
         composable(
-            route = Screen.LoginScreen.route + "/{name}",
+            route = Screen.HomeScreen.route + "/{name}",
             arguments = listOf(
                 navArgument("name") {
                     type = NavType.StringType
@@ -53,8 +56,10 @@ fun Navigation() {
                 }
             )
         ) { entry ->
-            LoginScreen(name = entry.arguments?.getString("name"))
+            HomeScreen(name = entry.arguments?.getString("name"))
+        }
+
+
         }
     }
-}
 

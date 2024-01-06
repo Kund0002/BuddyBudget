@@ -1,6 +1,5 @@
 package com.example.buddybudget
 
-import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -22,7 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun HomeScreen(navController: NavController, dbHelper: DatabaseHelper, userId: Long) {
+fun HomeScreen(navController: NavController, dbHelper: DatabaseHelper, userId: Int) {
     val userGroups = dbHelper.getUserGroups(userId)
 
     Column(

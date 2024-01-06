@@ -9,13 +9,13 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     companion object {
         const val DATABASE_NAME = "BuddyBudget.db"
-        const val DATABASE_VERSION = 1
+        const val DATABASE_VERSION = 3
     }
 
     //create user table
     private val CREATE_TABLE_USERS = """
         CREATE TABLE users (
-            id LONG PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             email TEXT UNIQUE
             
@@ -28,6 +28,16 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             description TEXT
+        )
+    """
+
+    private val CREATE_TABLE_USER_GROUPS = """
+        CREATE TABLE user_groups (
+        user_id INTEGER,
+        group_id, INTEGER,
+        PRIMARY KEY (user_id, group_id),
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (group_id) REFERENCES groups(id)
         )
     """
 
@@ -74,6 +84,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(CREATE_TABLE_USERS)
         db.execSQL(CREATE_TABLE_GROUPS)
+        db.execSQL(CREATE_TABLE_USER_GROUPS)
         db.execSQL(CREATE_TABLE_EXPENSES)
         db.execSQL(CREATE_TABLE_TRANSACTIONS)
 
@@ -93,7 +104,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.close()
     }
 
-    fun getUserGroups(userId: Long): List<Group> {
+    fun getUserGroups(userId: Int): List<Group> {
         val db = readableDatabase
         val groups = mutableListOf<Group>()
 

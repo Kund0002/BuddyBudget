@@ -27,10 +27,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
-data class User(val name: String, val id: Long)
+data class User(val name: String, val id: Int)
 data class Debt(val debtor: User, val creditor: User, val amount: Double)
 
-val currentUser = User("Alice", 123,)
+val currentUser = User("Alice", 12,)
 
 
 

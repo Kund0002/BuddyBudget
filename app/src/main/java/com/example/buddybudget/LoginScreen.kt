@@ -54,7 +54,7 @@ fun LoginScreen(navController: NavController) {
         )
         Spacer(modifier = Modifier.height(8.dp))
         Button(
-            onClick = { navController.navigate(Screen.HomeScreen.withArgs(username)) },
+            onClick = { navController.navigate(Screen.HomeScreen.route) },
             modifier = Modifier.align(Alignment.End)
         ) {
             Text(text = "To Login Screen")

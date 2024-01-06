@@ -32,24 +32,20 @@ fun Navigation() {
         }
         composable(route = Screen.NewGroupScreen.route) {
             NewGroupScreen(navController = navController)
-        composable(route = Screen.HomeScreen.route){
+            composable(route = Screen.HomeScreen.route) {
+                HomeScreen(
+                    navController = navController,
+                    dbHelper = DatabaseHelper(context = LocalContext.current),
+                    userId = currentUser.id
+                )
+
+            }
+
+
+
+        }
+        composable(route = Screen.HomeScreen.route) {
             HomeScreen(navController = navController, dbHelper = DatabaseHelper(context = LocalContext.current), userId = currentUser.id)
-
-        }
-        composable(
-            route = Screen.HomeScreen.route + "/{name}",
-            arguments = listOf(
-                navArgument("name") {
-                    type = NavType.StringType
-                    defaultValue = "test"
-                    nullable = true
-                }
-            )
-        ) { entry ->
-            HomeScreen(name = entry.arguments?.getString("name"))
-        }
-
-
         }
     }
-
+}

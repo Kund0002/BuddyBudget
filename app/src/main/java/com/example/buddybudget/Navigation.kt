@@ -47,5 +47,21 @@ fun Navigation() {
         composable(route = Screen.HomeScreen.route) {
             HomeScreen(navController = navController, dbHelper = DatabaseHelper(context = LocalContext.current), userId = currentUser.id)
         }
+        composable(route = Screen.MainScreen.route){
+            NewGroupScreen(navController = navController)
+        }
+        composable(
+            route = Screen.NewGroupScreen.route + "/{groupName}",
+            arguments = listOf(
+                navArgument("groupName") {
+                    type = NavType.StringType
+                    defaultValue = "testGroup"
+                    nullable = true
+                }
+            )
+        ) { entry ->
+            EditGroupScreen(navController = navController, name = entry.arguments?.getString("name"))
+
+        }
     }
 }

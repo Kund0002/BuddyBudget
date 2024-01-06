@@ -27,15 +27,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
-data class User(val name: String)
+data class User(val name: String, val id: Long)
 data class Debt(val debtor: User, val creditor: User, val amount: Double)
 
-val currentUser = User("Alice")
-val debts = listOf(
-    Debt(User("Alice"), User("Bob"), 50.0),
-    Debt(User("Charlie"), User("Alice"), 30.0),
-    Debt(User("Alice"), User("Dave"), 20.0)
-)
+val currentUser = User("Alice", 123,)
+
 
 
 
@@ -49,7 +45,6 @@ class MainActivity : ComponentActivity() {
             Navigation()
             }
         val dbHelper = DatabaseHelper(this)
-        val expenseManager = ExpenseManager(dbHelper)
         }
     }
 

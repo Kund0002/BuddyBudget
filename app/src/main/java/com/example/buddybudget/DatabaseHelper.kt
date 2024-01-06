@@ -15,7 +15,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     //create user table
     private val CREATE_TABLE_USERS = """
         CREATE TABLE users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id LONG PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             email TEXT UNIQUE
             
@@ -64,8 +64,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         val values = ContentValues().apply {
             put("name", dummyUserName)
             put("email", dummyUserEmail)
-
         }
+
 
         // Insert the dummy user into the 'users' table
         db.insert("users", null, values)
@@ -83,4 +83,38 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
 
     }
+    fun addUserToGroup(userId: Long, groupId: Long) {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("user_id", userId)
+            put("group_id", groupId)
+        }
+        db.insert("user_groups", null, values)
+        db.close()
+    }
+
+    fun getUserGroups(userId: Long): List<Group> {
+        val db = readableDatabase
+        val groups = mutableListOf<Group>()
+
+        val query = """
+            SELECT groups.id, groups.name, groups.description
+            FROM groups
+            INNER JOIN user_groups ON groups.id = user_groups.group_id
+            WHERE user_groups.user_id = ?
+        """
+
+        db.rawQuery(query, arrayOf(userId.toString())).use { cursor ->
+            while (cursor.moveToNext()) {
+                val groupId = cursor.getLong(0)
+                val groupName = cursor.getString(1)
+                val groupDescription = cursor.getString(2)
+                groups.add(Group(groupId, groupName, groupDescription))
+            }
+        }
+
+        db.close()
+        return groups
+    }
 }
+

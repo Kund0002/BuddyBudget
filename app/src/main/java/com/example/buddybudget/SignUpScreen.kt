@@ -1,12 +1,17 @@
 package com.example.buddybudget
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -17,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -29,36 +35,45 @@ fun SignUpScreen(navController: NavController) {
     var phoneNr by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
-    Column {
-        TextField(
-            value = email,
-            onValueChange = { email = it },
+    Column (
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 50.dp)
+    ){
+        Spacer(modifier = Modifier.height(100.dp))
+        Image(
+            painter = painterResource(id = R.drawable.createacclogo),
+            contentDescription = "Logo",
+            modifier = Modifier.fillMaxWidth()
+        )
+        OutlinedTextField(
+            value = email, onValueChange = { email = it },
             label = { Text("Email") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
         )
-        TextField(
-            value = name,
-            onValueChange = { name = it },
+        OutlinedTextField(
+            value = name, onValueChange = { name = it },
             label = { Text("Name") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
         )
-        TextField(
-            value = phoneNr,
-            onValueChange = { phoneNr = it },
+        OutlinedTextField(
+            value = phoneNr, onValueChange = { phoneNr = it },
             label = { Text("Phone Number") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
         )
-        TextField(
-            value = password,
-            onValueChange = { password = it },
+        OutlinedTextField(
+            value = password, onValueChange = { password = it },
             label = { Text("Password") },
-            modifier = Modifier.fillMaxWidth()
-        )
-        TextField(
-            value = password,
-            onValueChange = { password = it },
-            label = { Text("Repeat Password") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
         )
 
         Button(
@@ -71,21 +86,17 @@ fun SignUpScreen(navController: NavController) {
                 .fillMaxWidth()
                 .weight(1f, fill = false)
                 .padding(5.dp)
-                .padding(horizontal = 50.dp)
+                .padding(horizontal = 30.dp)
 
         ) {
             Text(text = "Create account", fontSize = 25.sp,)
 
         }
-        
-        LoginButton(navController)
+        Text(
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .clickable { navController.navigate(Screen.LoginScreen.route) },
+            text = "Already have an account? Login."
+        )
     }
-}
-
-@Composable
-fun LoginButton(navController: NavController) {
-    Text(
-        modifier = Modifier.clickable { navController.navigate(Screen.LoginScreen.route) },
-        text = "Already have an account? Login"
-    )
 }

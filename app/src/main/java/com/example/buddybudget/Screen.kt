@@ -11,6 +11,8 @@ sealed class Screen(val route: String) {
     object NewGroupScreen : Screen("newgroup_screen")
     object PreLoginScreen : Screen("prelogin_screen")
 
+    object ExpenseEntryScreen : Screen("expenseentry_screen")
+
 
     fun withArgs(vararg args: String): String {
         return buildString {

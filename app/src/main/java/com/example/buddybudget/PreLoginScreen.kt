@@ -30,6 +30,7 @@ fun PreLoginScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        NavBar(string = "kundayi lugter lol")
         Image(
             painter = painterResource(id = R.drawable.buddybudget_logo),
             contentDescription = "Logo",

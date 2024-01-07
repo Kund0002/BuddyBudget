@@ -81,6 +81,3 @@ val groups = listOf(
     Groups(1,"Jens"),
     Groups(2,"Lone")
 )
-
-
-

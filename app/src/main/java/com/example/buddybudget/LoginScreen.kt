@@ -51,6 +51,7 @@ fun LoginScreen(navController: NavController) {
             .fillMaxWidth()
             .padding(horizontal = 50.dp)
     ) {
+        NavBar(navController, "Navn" )
         Spacer(modifier = Modifier.height(100.dp))
         Image(
             painter = painterResource(id = R.drawable.loginlogo),

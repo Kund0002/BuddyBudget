@@ -33,9 +33,6 @@ data class Debt(val debtor: User, val creditor: User, val amount: Double)
 val currentUser = User("Alice", 12,)
 
 
-
-
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

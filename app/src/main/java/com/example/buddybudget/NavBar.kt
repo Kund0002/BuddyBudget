@@ -48,7 +48,7 @@ fun NavBar(navController: NavController, string: String) {
 
             painter = painterResource(id = R.drawable.userlogo),
             contentDescription = "Logo",
-            modifier = Modifier.clickable {navController.navigate(Screen.UserInformationScreen.route)}
+            modifier = Modifier.clickable { navController.navigate(Screen.UserInformationScreen.route) }
         )
         Text(
             fontFamily = Roman,
@@ -60,35 +60,11 @@ fun NavBar(navController: NavController, string: String) {
         )
         Spacer(modifier = Modifier.fillMaxWidth(0.55f))
 
+
         Image(
             painter = painterResource(id = R.drawable.newgrouplogo),
             contentDescription = "Logo",
-            modifier = Modifier.clickable {navController.navigate(Screen.NewGroupScreen.route)}
+            modifier = Modifier.clickable { navController.navigate(Screen.NewGroupScreen.route) }
         )
     }
-
-    /*BottomNavigation (
-        modifier = Modifier.background(Color.White)
-    ) {
-        BottomNavigationItem(
-            modifier = Modifier.background(Color.White),
-            icon = { Icon(Icons.Default.AccountBox, contentDescription = null) },
-            label = { Text(name)},
-            selected = true,
-            onClick = { /* Handle navigation to Home screen */ }
-        )
-
-        Spacer(modifier = Modifier
-            .weight(1f)
-            .background(Color.White)
-        )
-
-        BottomNavigationItem(
-            modifier = Modifier.background(Color.White),
-            icon = { Icon(Icons.Default.AddCircle, contentDescription = null) },
-            selected = false,
-            onClick = { /* Handle navigation to Search screen */ }
-        )
-        // Add more items as needed
-    }*/
 }

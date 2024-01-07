@@ -60,7 +60,6 @@ fun NavBar(navController: NavController, string: String) {
         )
         Spacer(modifier = Modifier.fillMaxWidth(0.55f))
 
-
         Image(
             painter = painterResource(id = R.drawable.newgrouplogo),
             contentDescription = "Logo",

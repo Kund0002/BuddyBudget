@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -37,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.input.KeyboardType
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -61,8 +63,15 @@ fun ExpenseEntryScreen(navController: NavController) {
                 .align(Alignment.CenterHorizontally),
         )
         OutlinedTextField(
-            value = totalAmount, onValueChange = { totalAmount = it },
+            value = totalAmount,
+            onValueChange = {
+                // Update totalAmount only if the new value is empty or numeric
+                if (it.isEmpty() || it.all { char -> char.isDigit() }) {
+                    totalAmount = it
+                }
+            },
             label = { Text("Enter Amount") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier
                 .width(320.dp)
@@ -80,7 +89,7 @@ fun ExpenseEntryScreen(navController: NavController) {
             )
         OutlinedTextField(
             value = description, onValueChange = { description = it },
-            label = { Text("Enter Amount") },
+            label = { Text("Description") },
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier
                 .width(320.dp)

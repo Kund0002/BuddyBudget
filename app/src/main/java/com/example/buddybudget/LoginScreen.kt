@@ -108,14 +108,6 @@ fun LoginScreen(navController: NavController) {
 
         ) {
         Text(text = "To User Info", fontSize = 15.sp)
-    }
-        Button(
-            onClick = {
-                NotificationCenter().showLoginNotification(context) // Trigger the notification
-            },
-            modifier = Modifier.align(Alignment.End)
-        ) {
-            Text(text = "To Login Screen")
         }
     }
 }

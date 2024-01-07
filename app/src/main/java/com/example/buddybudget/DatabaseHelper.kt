@@ -69,11 +69,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         )
     """
     //dummy user for testing purposes
-    private fun createTestUser(db: SQLiteDatabase) {
-        val dummyUserName = "Alice mcCool"
-        val dummyUserEmail = "Alice.mccool@yahoo.dk"
-
-        val values = ContentValues().apply {
+    private fun createTestUser(db: SQLiteDatabase, dummyUserName: String, dummyUserEmail: String) {
+            val values = ContentValues().apply {
             put("name", dummyUserName)
             put("email", dummyUserEmail)
         }
@@ -88,7 +85,10 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.execSQL(CREATE_TABLE_EXPENSES)
         db.execSQL(CREATE_TABLE_TRANSACTIONS)
 
-        createTestUser(db)
+        //creating the test users
+        createTestUser(db, "Alice McCool", "alice.mccool11@yahoo.com")
+        createTestUser(db, "Tom Thomson", "tomthomson@gmail.com")
+        createTestUser(db, "Rose tyler", "tyler.rose@yahoo.com")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

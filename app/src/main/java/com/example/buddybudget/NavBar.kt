@@ -48,6 +48,7 @@ fun NavBar(navController: NavController, string: String) {
 
             painter = painterResource(id = R.drawable.userlogo),
             contentDescription = "Logo",
+
             modifier = Modifier.clickable { navController.navigate(Screen.UserInformationScreen.route) }
         )
         Text(
@@ -59,7 +60,6 @@ fun NavBar(navController: NavController, string: String) {
             text = name
         )
         Spacer(modifier = Modifier.fillMaxWidth(0.55f))
-
 
         Image(
             painter = painterResource(id = R.drawable.newgrouplogo),

@@ -48,10 +48,6 @@ fun NavBar(navController: NavController, string: String) {
 
             painter = painterResource(id = R.drawable.userlogo),
             contentDescription = "Logo",
-<<<<<<< HEAD
-=======
-
->>>>>>> 96a309a92b6c0d3f3aa00b3ea13a76514fefdb5b
             modifier = Modifier.clickable { navController.navigate(Screen.UserInformationScreen.route) }
         )
         Text(

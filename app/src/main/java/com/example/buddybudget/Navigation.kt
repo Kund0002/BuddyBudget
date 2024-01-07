@@ -27,6 +27,9 @@ fun Navigation() {
         composable(route = Screen.UserEditScreen.route) {
             UserEditScreen(navController = navController)
         }
+        composable(route = Screen.ExpenseEntryScreen.route) {
+            ExpenseEntryScreen(navController = navController)
+        }
         composable(route = Screen.UserInformationScreen.route) {
             UserInformationScreen(navController = navController)
         }
@@ -40,9 +43,6 @@ fun Navigation() {
                 )
 
             }
-
-
-
         }
         composable(route = Screen.HomeScreen.route) {
             HomeScreen(navController = navController, dbHelper = DatabaseHelper(context = LocalContext.current), userId = currentUser.id)

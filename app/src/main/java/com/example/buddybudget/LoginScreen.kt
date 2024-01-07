@@ -109,5 +109,18 @@ fun LoginScreen(navController: NavController) {
         ) {
         Text(text = "To User Info", fontSize = 15.sp)
         }
+
+        Button(
+            onClick = { navController.navigate(Screen.ExpenseEntryScreen.route) },
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .fillMaxWidth()
+                .weight(1f, fill = false)
+                .padding(5.dp)
+                .padding(horizontal = 50.dp)
+
+        ) {
+            Text(text = "To Add Expense", fontSize = 15.sp)
+        }
     }
 }

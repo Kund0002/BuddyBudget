@@ -93,7 +93,7 @@ fun SignUpScreen(navController: NavController) {
                 .padding(horizontal = 30.dp)
 
         ) {
-            Text(text = "Create account", fontSize = 25.sp,)
+            Text(text = "Create account", fontSize = 25.sp)
 
         }
         Text(

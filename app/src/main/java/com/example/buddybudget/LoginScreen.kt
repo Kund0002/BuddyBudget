@@ -51,7 +51,6 @@ fun LoginScreen(navController: NavController) {
             .fillMaxWidth()
             .padding(horizontal = 50.dp)
     ) {
-        NavBar(navController, "Navn" )
         Spacer(modifier = Modifier.height(100.dp))
         Image(
             painter = painterResource(id = R.drawable.loginlogo),
@@ -97,31 +96,5 @@ fun LoginScreen(navController: NavController) {
                 .clickable { navController.navigate(Screen.SignUpScreen.route) },
             text = "Don't have an account? Sign up"
         )
-        Button(
-
-                onClick = { navController.navigate(Screen.UserInformationScreen.route) },
-        modifier = Modifier
-            .align(Alignment.CenterHorizontally)
-            .fillMaxWidth()
-            .weight(1f, fill = false)
-            .padding(5.dp)
-            .padding(horizontal = 50.dp)
-
-        ) {
-        Text(text = "To User Info", fontSize = 15.sp)
-        }
-
-        Button(
-            onClick = { navController.navigate(Screen.ExpenseEntryScreen.route) },
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .fillMaxWidth()
-                .weight(1f, fill = false)
-                .padding(5.dp)
-                .padding(horizontal = 50.dp)
-
-        ) {
-            Text(text = "To Add Expense", fontSize = 15.sp)
-        }
     }
 }

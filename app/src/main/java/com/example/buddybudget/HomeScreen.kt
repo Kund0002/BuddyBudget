@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -42,7 +43,7 @@ fun HomeScreen(navController: NavController){
         Box(modifier = Modifier
             .padding(horizontal = 50.dp, vertical = 5.dp)
             .border(2.dp, Color.Cyan, RoundedCornerShape(5.dp))
-            .clickable{navController.navigate(Screen.EditGroupScreen.route)},
+            .clickable{navController.navigate(Screen.ExpenseEntryScreen.route)},
 
             ){
             Column {
@@ -65,12 +66,26 @@ fun HomeScreen(navController: NavController){
                     Text(text = "Total: 1800 Kr")
                     Text(text = "Owed: 250 Kr")
                 }
+
+                Button(
+                    colors = ButtonDefaults.buttonColors(Color.Cyan),
+                    onClick = { navController.navigate(Screen.EditGroupScreen.route) },
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .fillMaxWidth()
+                        .weight(1f, fill = false)
+                        .padding(5.dp)
+                        .padding(horizontal = 50.dp)
+
+                ) {
+                    Text(text = "Edit Group", fontSize = 15.sp)
+                }
             }
         }
         Box(modifier = Modifier
             .padding(horizontal = 50.dp, vertical = 5.dp)
             .border(2.dp, Color.Cyan, RoundedCornerShape(5.dp))
-            .clickable{navController.navigate(Screen.EditGroupScreen.route)},
+            .clickable{navController.navigate(Screen.ExpenseEntryScreen.route)},
 
         ){
             Column {
@@ -94,12 +109,26 @@ fun HomeScreen(navController: NavController){
                     Text(text = "Total: 900 Kr")
                     Text(text = "Owe: 250 kr")
                 }
+
+                Button(
+                    colors = ButtonDefaults.buttonColors(Color.Cyan),
+                    onClick = { navController.navigate(Screen.EditGroupScreen.route) },
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .fillMaxWidth()
+                        .weight(1f, fill = false)
+                        .padding(5.dp)
+                        .padding(horizontal = 50.dp)
+
+                ) {
+                    Text(text = "Edit Group", fontSize = 15.sp)
+                }
             }
         }
         Box(modifier = Modifier
             .padding(horizontal = 50.dp, vertical = 5.dp)
             .border(2.dp, Color.Cyan, RoundedCornerShape(5.dp))
-            .clickable{navController.navigate(Screen.EditGroupScreen.route)},
+            .clickable{navController.navigate(Screen.ExpenseEntryScreen.route)},
 
             ){
             Column {
@@ -122,6 +151,20 @@ fun HomeScreen(navController: NavController){
                 ) {
                     Text(text = "Total: 1000 Kr")
                     Text(text = "Owed: 600 Kr")
+                }
+
+                Button(
+                    colors = ButtonDefaults.buttonColors(Color.Cyan),
+                    onClick = { navController.navigate(Screen.EditGroupScreen.route) },
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .fillMaxWidth()
+                        .weight(1f, fill = false)
+                        .padding(5.dp)
+                        .padding(horizontal = 50.dp)
+
+                ) {
+                    Text(text = "Edit Group", fontSize = 15.sp)
                 }
             }
         }

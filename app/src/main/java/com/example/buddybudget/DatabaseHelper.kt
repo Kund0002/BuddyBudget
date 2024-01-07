@@ -4,6 +4,8 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import androidx.core.content.contentValuesOf
+import org.w3c.dom.Text
 
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -30,7 +32,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             description TEXT
         )
     """
-
+    //create table for groups users are part of
     private val CREATE_TABLE_USER_GROUPS = """
         CREATE TABLE user_groups (
         user_id INTEGER,
@@ -67,11 +69,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         )
     """
     //dummy user for testing purposes
-    private fun createTestUser(db: SQLiteDatabase) {
-        val dummyUserName = "Alice mcCool"
-        val dummyUserEmail = "Alice.mccool@yahoo.dk"
-
-        val values = ContentValues().apply {
+    private fun createTestUser(db: SQLiteDatabase, dummyUserName: String, dummyUserEmail: String) {
+            val values = ContentValues().apply {
             put("name", dummyUserName)
             put("email", dummyUserEmail)
         }
@@ -86,13 +85,58 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.execSQL(CREATE_TABLE_EXPENSES)
         db.execSQL(CREATE_TABLE_TRANSACTIONS)
 
-        createTestUser(db)
+        //creating the test users
+        createTestUser(db, "Alice McCool", "alice.mccool11@yahoo.com")
+        createTestUser(db, "Tom Thomson", "tomthomson@gmail.com")
+        createTestUser(db, "Rose tyler", "tyler.rose@yahoo.com")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
 
     }
-    fun addUserToGroup(userId: Long, groupId: Long) {
+
+    private fun getUserIdByEmail(db: SQLiteDatabase?, email: String): Long {
+        db?.let {
+            val cursor = db.rawQuery("SELECT id FROM users WHERE email=?", arrayOf(email))
+            return if (cursor.moveToFirst()) {
+                cursor.getLong(0)
+            } else {
+                -1L
+            }
+        }
+        return -1L //Iam not being allowed to not handle nullables so we are doing this now. It shouldnt be possible to have nullables but whatever
+
+    }
+    fun insertUser(name: String, email: String): Long {
+        val db = writableDatabase
+        var userId: Long  = -1 //this value means adding user failed
+
+        try {
+            //check if user with same email exists
+            db.beginTransaction()
+            val existingUserId = getUserIdByEmail(db, email)
+            if (existingUserId != -1L){
+                //existing user found
+                return existingUserId
+            }
+            //new user, insert stuff
+            val values = ContentValues().apply {
+                put("Name", name)
+                put("email", email)
+            }
+            userId = db.insert("users", null, values)
+            db.setTransactionSuccessful()
+        }
+        finally {
+            db.endTransaction()
+            db.close()
+
+        }
+        return userId
+    }
+
+    //add user to already created group
+    fun addUserToGroup(name: String, userId: Int, groupId: Int) {
         val db = writableDatabase
         val values = ContentValues().apply {
             put("user_id", userId)

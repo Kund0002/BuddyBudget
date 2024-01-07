@@ -22,7 +22,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+
 import androidx.compose.ui.res.painterResource
+
+import androidx.compose.ui.platform.LocalContext
+
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -34,6 +38,7 @@ fun SignUpScreen(navController: NavController) {
     var name by remember { mutableStateOf("") }
     var phoneNr by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val context = LocalContext.current
 
     Column (
         verticalArrangement = Arrangement.Center,
@@ -79,6 +84,7 @@ fun SignUpScreen(navController: NavController) {
         Button(
             onClick = {
                 navController.navigate(Screen.SignUpScreen.route)
+                NotificationCenter().showLoginNotification(context)
             },
             colors = ButtonDefaults.buttonColors(Color.Cyan),
             modifier = Modifier

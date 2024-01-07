@@ -30,7 +30,7 @@ import androidx.navigation.NavController
 @SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EditGroupScreen(navController: NavController, name: String?) {
+fun EditGroupScreen(navController: NavController) {
     Column{
         Text(text = "Group Name")
         TextField(
@@ -44,19 +44,9 @@ fun EditGroupScreen(navController: NavController, name: String?) {
             onValueChange = {it},
             label = { Text("Enter description for group") }
         )
-        Text(text = "Search for Participants")
-        TextField(
-            value = "",
-            onValueChange = {it},
-            label = { Text("Add Person to Group") }
-        )
-        Button(onClick = {}) {
-            Text(text = "CREATE GROUP")
-        }
         Text(text = "Group Members")
-        
         LazyColumn(modifier=Modifier.fillMaxSize()){
-            items(items = tasks, key = {it.id}) {task ->
+            items(items = groups, key = {it.id}) {task ->
                 ListItem(
                     headlineText = { Text(text = task.name)},
                     trailingContent = {
@@ -68,14 +58,14 @@ fun EditGroupScreen(navController: NavController, name: String?) {
     }
 }
 
-data class Task(
+data class Groups(
     val id: Int,
     val name: String,
 )
 
-val tasks = listOf(
-    Task(1,"Jens"),
-    Task(2,"Lone")
+val groups = listOf(
+    Groups(1,"Jens"),
+    Groups(2,"Lone")
 )
 
 

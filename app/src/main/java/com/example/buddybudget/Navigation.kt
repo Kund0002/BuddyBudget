@@ -58,7 +58,7 @@ fun Navigation() {
                 }
             )
         ) { entry ->
-            EditGroupScreen(navController = navController, name = entry.arguments?.getString("name"))
+            EditGroupScreen(navController = navController)
 
         }
     }

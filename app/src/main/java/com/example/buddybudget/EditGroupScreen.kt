@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-<<<<<<< HEAD
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,13 +16,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
-=======
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
->>>>>>> de5e391cc42b72593db8787010595432beb5c45e
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -31,21 +27,14 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.Modifier
-<<<<<<< HEAD
 import androidx.compose.ui.graphics.vector.ImageVector
-=======
->>>>>>> de5e391cc42b72593db8787010595432beb5c45e
 import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavController
 
 @SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-<<<<<<< HEAD
 fun EditGroupScreen(navController: NavController) {
-=======
-fun EditGroupScreen(navController: NavController, name: String?) {
->>>>>>> de5e391cc42b72593db8787010595432beb5c45e
     Column{
         Text(text = "Group Name")
         TextField(
@@ -59,18 +48,17 @@ fun EditGroupScreen(navController: NavController, name: String?) {
             onValueChange = {it},
             label = { Text("Enter description for group") }
         )
-<<<<<<< HEAD
         Text(text = "Group Members")
-        LazyColumn(modifier=Modifier.fillMaxSize()){
-            items(items = groups, key = {it.id}) {task ->
+        LazyColumn(modifier=Modifier.fillMaxSize()) {
+            items(items = groups, key = { it.id }) { task ->
                 ListItem(
-                    headlineText = { Text(text = task.name)},
+                    headlineText = { Text(text = task.name) },
                     trailingContent = {
                         Icon(imageVector = Icons.Default.MoreVert, contentDescription = task.name)
                     }
                 )
             }
-=======
+        }
         Text(text = "Search for Participants")
         TextField(
             value = "",
@@ -79,13 +67,11 @@ fun EditGroupScreen(navController: NavController, name: String?) {
         )
         Button(onClick = {}) {
             Text(text = "CREATE GROUP")
->>>>>>> de5e391cc42b72593db8787010595432beb5c45e
         }
         Text(text = "Group Members")
     }
 }
 
-<<<<<<< HEAD
 data class Groups(
     val id: Int,
     val name: String,
@@ -95,8 +81,6 @@ val groups = listOf(
     Groups(1,"Jens"),
     Groups(2,"Lone")
 )
-=======
->>>>>>> de5e391cc42b72593db8787010595432beb5c45e
 
 
 

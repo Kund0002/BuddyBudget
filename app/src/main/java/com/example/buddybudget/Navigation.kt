@@ -64,8 +64,12 @@ fun Navigation() {
                     }
                 )
             ) { entry ->
-                EditGroupScreen(navController = navController)
+                //EditGroupScreen(navController = navController)
 
             }
+        composable(route = Screen.EditGroupScreen.route){
+            EditGroupScreen(navController = navController)
         }
+        }
+    
     }

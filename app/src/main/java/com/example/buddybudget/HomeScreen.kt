@@ -27,29 +27,33 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
 fun HomeScreen(navController: NavController){
-
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .border(10.dp, Color.LightGray, RoundedCornerShape(5.dp))
-            .padding(vertical = 50.dp, horizontal = 10.dp),
+            .border(5.dp, Color.LightGray, RoundedCornerShape(10.dp))
+            .padding(vertical = 10.dp, horizontal = 5.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        NavBar(navController, string = "User")
         Box(modifier = Modifier
             .padding(horizontal = 50.dp, vertical = 5.dp)
-            .border(2.dp, Color.Cyan, RoundedCornerShape(5.dp)),
-        ){
+            .border(2.dp, Color.Cyan, RoundedCornerShape(5.dp))
+            .clickable{navController.navigate(Screen.EditGroupScreen.route)},
+
+            ){
             Column {
                 Text(
-                    text = "Group Name",
+                    text = "Drinks",
                     modifier = Modifier
                         .fillMaxWidth()
                         .border(2.dp, Color.Blue, RoundedCornerShape(5.dp))
                         .padding(5.dp),
-                    textAlign = TextAlign.Center, // Center the group name
+                    textAlign = TextAlign.Center,
+                    fontSize = 16.sp
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 Row(
@@ -58,8 +62,66 @@ fun HomeScreen(navController: NavController){
                         .padding(10.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text(text = "Total: $100")
-                    Text(text = "Owed: $25")
+                    Text(text = "Total: 1800 Kr")
+                    Text(text = "Owed: 250 Kr")
+                }
+            }
+        }
+        Box(modifier = Modifier
+            .padding(horizontal = 50.dp, vertical = 5.dp)
+            .border(2.dp, Color.Cyan, RoundedCornerShape(5.dp))
+            .clickable{navController.navigate(Screen.EditGroupScreen.route)},
+
+        ){
+            Column {
+                Text(
+                    text = "Food",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color.Blue, RoundedCornerShape(5.dp))
+                        .padding(5.dp),
+                    textAlign = TextAlign.Center,
+                    fontSize = 16.sp
+
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(text = "Total: 900 Kr")
+                    Text(text = "Owe: 250 kr")
+                }
+            }
+        }
+        Box(modifier = Modifier
+            .padding(horizontal = 50.dp, vertical = 5.dp)
+            .border(2.dp, Color.Cyan, RoundedCornerShape(5.dp))
+            .clickable{navController.navigate(Screen.EditGroupScreen.route)},
+
+            ){
+            Column {
+                Text(
+                    text = "Fishing trip",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color.Blue, RoundedCornerShape(5.dp))
+                        .padding(5.dp),
+                    textAlign = TextAlign.Center,
+                    fontSize = 16.sp
+
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(text = "Total: 1000 Kr")
+                    Text(text = "Owed: 600 Kr")
                 }
             }
         }

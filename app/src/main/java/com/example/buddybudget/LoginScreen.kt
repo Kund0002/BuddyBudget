@@ -1,10 +1,11 @@
 package com.example.buddybudget
 
+import android.annotation.SuppressLint
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,6 +28,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,6 +43,7 @@ import androidx.navigation.NavController
 fun LoginScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val context = LocalContext.current
 
     Column(
         verticalArrangement = Arrangement.Center,
@@ -65,7 +75,10 @@ fun LoginScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(8.dp))
         Button(
-            onClick = { navController.navigate(Screen.HomeScreen.route) },
+            onClick = {
+                navController.navigate(Screen.HomeScreen.route)
+                NotificationCenter().showLoginNotification(context) // Trigger the notification
+            },
             colors = ButtonDefaults.buttonColors(Color.Cyan),
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
@@ -84,15 +97,17 @@ fun LoginScreen(navController: NavController) {
             text = "Don't have an account? Sign up"
         )
         Button(
-            onClick = { navController.navigate(Screen.UserInformationScreen.route) },
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .fillMaxWidth()
-                .weight(1f, fill = false)
-                .padding(5.dp)
-                .padding(horizontal = 50.dp)
+
+                onClick = { navController.navigate(Screen.UserInformationScreen.route) },
+        modifier = Modifier
+            .align(Alignment.CenterHorizontally)
+            .fillMaxWidth()
+            .weight(1f, fill = false)
+            .padding(5.dp)
+            .padding(horizontal = 50.dp)
+
         ) {
-            Text(text = "To User Info", fontSize = 15.sp)
+        Text(text = "To User Info", fontSize = 15.sp)
         }
     }
 }

@@ -30,6 +30,7 @@ fun PreLoginScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        NavBar(string = "kundayi lugter lol")
         Image(
             painter = painterResource(id = R.drawable.buddybudget_logo),
             contentDescription = "Logo",
@@ -62,11 +63,12 @@ fun PreLoginScreen(navController: NavController) {
 
             },
             colors = ButtonDefaults.buttonColors(Color.Cyan),
-            modifier = Modifier.align(Alignment.CenterHorizontally).
-            fillMaxWidth().
-            weight(1f, fill = false).
-            padding(5.dp).
-            padding(horizontal = 50.dp)
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .fillMaxWidth()
+                .weight(1f, fill = false)
+                .padding(5.dp)
+                .padding(horizontal = 50.dp)
 
         ) {
             Text(text = "Create account", fontSize = 25.sp,)
